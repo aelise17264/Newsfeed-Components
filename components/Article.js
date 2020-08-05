@@ -137,7 +137,7 @@ const article = document.querySelector('.articles')
         secondPara.textContent = data.secondParagraph
         thirdPara.textContent = data.thirdParagraph
       
-        console.log(article)
+        //console.log(article)
         
   /*<div class="article">
     <h2>{title of the article}</h2>
@@ -156,7 +156,7 @@ const article = document.querySelector('.articles')
 expand.addEventListener('click', event =>{
 let show = expand.classList.toggle('+')
   if (show){
-    expand.innerText = `${firstPara.textContent}, ${secondPara.textContent}`
+    expand.innerText = `${firstPara.textContent}, ${secondPara.textContent}, ${thirdPara.textContent}`
     
   }else{
     
