@@ -109,10 +109,12 @@ const data = [
   Your component is a function that takes an article object as its only argument,
   and returns a DOM node looking like the one below:
 */
-const article = document.querySelector('.articles')
+
+const article = document.querySelector('.articles') 
 
   function articleMaker(data){
-      
+     
+    const articleContainer = document.createElement('div')
       const title = document.createElement('h2')
       const date = document.createElement('p')
       const firstPara = document.createElement('p')
@@ -122,10 +124,11 @@ const article = document.querySelector('.articles')
       const open = document.createElement('button')
       
 
-     article.appendChild(title)
-     article.appendChild(date)
-     article.appendChild(expand)
+     articleContainer.appendChild(title)
+     articleContainer.appendChild(date)
+     articleContainer.appendChild(expand)
      expand.appendChild(open)
+     
          
         date.className = 'date'
         expand.className = 'expandButton'
@@ -136,6 +139,10 @@ const article = document.querySelector('.articles')
         firstPara.textContent = data.firstParagraph
         secondPara.textContent = data.secondParagraph
         thirdPara.textContent = data.thirdParagraph
+
+        firstPara.classList = 'firstPara'
+        secondPara.classList = 'secondPara'
+        thirdPara.classList = 'thirdPara'
       
         //console.log(article)
         
@@ -156,7 +163,7 @@ const article = document.querySelector('.articles')
 expand.addEventListener('click', event =>{
 let show = expand.classList.toggle('+')
   if (show){
-    expand.innerText = `${firstPara.textContent}, ${secondPara.textContent}, ${thirdPara.textContent}`
+    expand.innerText = `${firstPara.textContent} \n \n ${secondPara.textContent} \n \n ${thirdPara.textContent}`
     
   }else{
     
@@ -166,7 +173,7 @@ let show = expand.classList.toggle('+')
 })
 
   // Step 3: Don't forget to return something from your function!
-  return title
+  return articleContainer
   
  }
   /*Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
