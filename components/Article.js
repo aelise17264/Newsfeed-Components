@@ -86,6 +86,21 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Atom vs Visual Studio Code',
+    date: 'Aug 31st, 2019',
+    firstParagraph: `Harry, Ron and Hermione had always known that Hagrid had an unfortunate liking for large and monstrous creatures. 
+    During their first year at Hogwarts he tried to raise a dragon in his little wooden house, and it would be a long time before they forgot the giant, 
+    three-headed dog he'd christened "Fluffy" And if, as a boy, Hagrid had heard that a monster was hidden somewhere in the castle, Harry was sure he'd have gone to any lengths for a glimpse of it.`,
+
+    secondParagraph: `He'd probably thought it was a shame that the monster had been cooped up so long, and thought it deserved the chance to stretch its many legs; 
+    Harry could just imagine the thirteen-year-old Hagrid trying to fit a leach and collar on it. But he was equally certain that Hagrid would never have meant to kill anybody.
+    Harry half wished he hadn't found out how to work Riddle's diary.`,
+
+    thirdParagraph: `Again and again Ron and Hermione made him recount what he'd seen, until he was heartily sick of telling them and sick of the long, circular conversation
+    that followed. "Riddle might have got the wrong person," said Hermione. "Maybe it was some other monster that was attacking people..."
+    "How many monsters d'you think this place can hold?" Ron asked dully.`
   }
 ];
 
@@ -104,20 +119,20 @@ const article = document.querySelector('.articles')
       const secondPara = document.createElement('p')
       const thirdPara = document.createElement('p')
       const expand = document.createElement('span')
- 
-     article.appendChild(title)
-      article.appendChild(date)
-      date.appendChild(firstPara)
-      date.appendChild(secondPara)
-      date.appendChild(thirdPara)
-      article.appendChild(expand)
+      const open = document.createElement('button')
+      
 
-        
+     article.appendChild(title)
+     article.appendChild(date)
+     article.appendChild(expand)
+     expand.appendChild(open)
+         
         date.className = 'date'
         expand.className = 'expandButton'
 
         title.textContent = data.title
         date.textContent = data.date
+        expand.innerText = '+'
         firstPara.textContent = data.firstParagraph
         secondPara.textContent = data.secondParagraph
         thirdPara.textContent = data.thirdParagraph
@@ -135,9 +150,18 @@ const article = document.querySelector('.articles')
 
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.*/
-expand.textContent = '+'
+
+
 
 expand.addEventListener('click', event =>{
+let show = expand.classList.toggle('+')
+  if (show){
+    expand.innerText = `${firstPara.textContent}, ${secondPara.textContent}`
+    
+  }else{
+    
+    expand.innerText = '+'
+  }
 
 })
 
