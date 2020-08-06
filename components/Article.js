@@ -86,6 +86,21 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Atom vs Visual Studio Code',
+    date: 'Aug 31st, 2019',
+    firstParagraph: `Harry, Ron and Hermione had always known that Hagrid had an unfortunate liking for large and monstrous creatures. 
+    During their first year at Hogwarts he tried to raise a dragon in his little wooden house, and it would be a long time before they forgot the giant, 
+    three-headed dog he'd christened "Fluffy" And if, as a boy, Hagrid had heard that a monster was hidden somewhere in the castle, Harry was sure he'd have gone to any lengths for a glimpse of it.`,
+
+    secondParagraph: `He'd probably thought it was a shame that the monster had been cooped up so long, and thought it deserved the chance to stretch its many legs; 
+    Harry could just imagine the thirteen-year-old Hagrid trying to fit a leach and collar on it. But he was equally certain that Hagrid would never have meant to kill anybody.
+    Harry half wished he hadn't found out how to work Riddle's diary.`,
+
+    thirdParagraph: `Again and again Ron and Hermione made him recount what he'd seen, until he was heartily sick of telling them and sick of the long, circular conversation
+    that followed. "Riddle might have got the wrong person," said Hermione. "Maybe it was some other monster that was attacking people..."
+    "How many monsters d'you think this place can hold?" Ron asked dully.`
   }
 ];
 
@@ -93,8 +108,45 @@ const data = [
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
   and returns a DOM node looking like the one below:
+*/
 
-  <div class="article">
+const article = document.querySelector('.articles') 
+
+  function articleMaker(data){
+     
+    const articleContainer = document.createElement('div')
+      const title = document.createElement('h2')
+      const date = document.createElement('p')
+      const firstPara = document.createElement('p')
+      const secondPara = document.createElement('p')
+      const thirdPara = document.createElement('p')
+      const expand = document.createElement('span')
+      const open = document.createElement('button')
+      
+
+     articleContainer.appendChild(title)
+     articleContainer.appendChild(date)
+     articleContainer.appendChild(expand)
+     expand.appendChild(open)
+     
+         
+        date.className = 'date'
+        expand.className = 'expandButton'
+
+        title.textContent = data.title
+        date.textContent = data.date
+        expand.innerText = '+'
+        firstPara.textContent = data.firstParagraph
+        secondPara.textContent = data.secondParagraph
+        thirdPara.textContent = data.thirdParagraph
+
+        firstPara.classList = 'firstPara'
+        secondPara.classList = 'secondPara'
+        thirdPara.classList = 'thirdPara'
+      
+        //console.log(article)
+        
+  /*<div class="article">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
 
@@ -104,13 +156,32 @@ const data = [
   </div>
 
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
-  This listener should toggle the class 'article-open' on div.article.
+  This listener should toggle the class 'article-open' on div.article.*/
 
-  Step 3: Don't forget to return something from your function!
 
-  Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
-  to create a div.article element and append it to the DOM inside div.articles (see index.html).
 
-  Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
+expand.addEventListener('click', event =>{
+let show = expand.classList.toggle('+')
+  if (show){
+    expand.innerText = `${firstPara.textContent} \n \n ${secondPara.textContent} \n \n ${thirdPara.textContent}`
+    
+  }else{
+    
+    expand.innerText = '+'
+  }
+
+})
+
+  // Step 3: Don't forget to return something from your function!
+  return articleContainer
+  
+ }
+  /*Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
+  to create a div.article element and append it to the DOM inside div.articles (see index.html).*/
+data.forEach(element => {
+  let articleElement = articleMaker(element);
+  article.appendChild(articleElement)
+})
+ /* Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
